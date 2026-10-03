@@ -1,0 +1,1045 @@
+<!DOCTYPE html><html><head><title>FAYGANTS Dashboard</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial, sans-serif;
+    }
+
+    body{
+        background:#111;
+        color:white;
+        padding:20px;
+    }
+
+    .header{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:25px;
+    }
+
+    .title{
+        color:#ff3333;
+        font-size:30px;
+        font-weight:bold;
+    }
+
+    .logout-btn{
+        background:#ff3333;
+        color:white;
+        padding:10px 15px;
+        text-decoration:none;
+        border-radius:8px;
+    }
+
+    /* DASHBOARD CARDS */
+
+    .cards{
+        display:grid;
+        grid-template-columns:repeat(5, 1fr);
+        gap:15px;
+        margin-bottom:25px;
+    }
+
+    .card{
+        background:#1c1c1c;
+        border-left:5px solid #ff3333;
+        padding:18px;
+        border-radius:10px;
+    }
+
+    .card h3{
+        color:#aaa;
+        font-size:13px;
+        margin-bottom:10px;
+    }
+
+    .card h1{
+        color:#ff3333;
+        font-size:27px;
+    }
+
+    .revenue-card{
+        border-left-color:#00c853;
+    }
+
+    .revenue-card h1{
+        color:#00c853;
+    }
+
+    /* SEARCH */
+
+    .search-box{
+        background:#1c1c1c;
+        padding:15px;
+        border-radius:10px;
+        margin-bottom:20px;
+    }
+
+    .search-form{
+        display:flex;
+        gap:10px;
+    }
+
+    .search-input{
+        flex:1;
+        padding:12px;
+        border:none;
+        border-radius:8px;
+        font-size:15px;
+        outline:none;
+    }
+
+    .search-btn{
+        background:#ff3333;
+        color:white;
+        border:none;
+        border-radius:8px;
+        padding:12px 20px;
+        cursor:pointer;
+        font-weight:bold;
+    }
+
+    .clear-btn{
+        background:#333;
+        color:white;
+        text-decoration:none;
+        padding:12px 18px;
+        border-radius:8px;
+    }
+
+    /* TABLE */
+
+    .table-container{
+        width:100%;
+        overflow-x:auto;
+        background:#1c1c1c;
+        border-radius:10px;
+    }
+
+    table{
+        width:100%;
+        border-collapse:collapse;
+        min-width:1700px;
+    }
+
+    th{
+        background:#ff3333;
+        color:white;
+        padding:14px 10px;
+        text-align:left;
+        white-space:nowrap;
+    }
+
+    td{
+        padding:12px 10px;
+        border-bottom:1px solid #333;
+        vertical-align:middle;
+    }
+
+    tr:hover{
+        background:#222;
+    }
+
+    /* FILE */
+
+    .filename{
+        max-width:230px;
+        word-break:break-word;
+    }
+
+    .view-btn,
+    .download-btn{
+        display:inline-block;
+        color:white;
+        text-decoration:none;
+        padding:7px 10px;
+        border-radius:6px;
+        margin-top:7px;
+        margin-right:3px;
+        font-size:13px;
+    }
+
+    .view-btn{
+        background:#333;
+    }
+
+    .download-btn{
+        background:#555;
+    }
+
+    /* PRICING */
+
+    .pricing-form{
+        display:flex;
+        flex-direction:column;
+        gap:7px;
+        min-width:145px;
+    }
+
+    .pages-input{
+        width:100%;
+        padding:8px;
+        border:none;
+        border-radius:6px;
+        outline:none;
+    }
+
+    .type-select,
+    .payment-select,
+    .status-select{
+        padding:8px;
+        border:none;
+        border-radius:6px;
+        font-weight:bold;
+        cursor:pointer;
+    }
+
+    .type-select{
+        background:#333;
+        color:white;
+    }
+
+    .save-price-btn{
+        background:#ff3333;
+        color:white;
+        border:none;
+        padding:8px;
+        border-radius:6px;
+        cursor:pointer;
+        font-weight:bold;
+    }
+
+    .save-price-btn:hover{
+        background:#e62222;
+    }
+
+    /* COST */
+
+    .cost-box{
+        min-width:120px;
+    }
+
+    .cost{
+        color:#00c853;
+        font-size:18px;
+        font-weight:bold;
+    }
+
+    .discount{
+        color:#ffcc00;
+        font-size:13px;
+        margin-bottom:5px;
+    }
+
+    .price-info{
+        color:#aaa;
+        font-size:12px;
+        margin-bottom:6px;
+    }
+
+    /* PAYMENT */
+
+    .payment-form{
+        display:flex;
+        flex-direction:column;
+        gap:7px;
+        min-width:110px;
+    }
+
+    .payment-select{
+        background:#333;
+        color:white;
+    }
+
+    .paid{
+        color:#00c853;
+        font-weight:bold;
+    }
+
+    .unpaid{
+        color:#ff3333;
+        font-weight:bold;
+    }
+
+    /* STATUS */
+
+    .status-form{
+        min-width:125px;
+    }
+
+    .status-select{
+        width:100%;
+        background:#333;
+        color:white;
+    }
+
+    /* PRINT */
+
+    .print-form{
+        display:inline;
+    }
+
+    .print-btn{
+        background:#ff3333;
+        color:white;
+        border:none;
+        padding:9px 13px;
+        border-radius:6px;
+        cursor:pointer;
+        font-weight:bold;
+    }
+
+    .print-btn:hover{
+        background:#e62222;
+    }
+
+    .printed-label{
+        display:inline-block;
+        background:#333;
+        color:#aaa;
+        padding:8px 10px;
+        border-radius:6px;
+        font-size:13px;
+    }
+
+    .payment-warning{
+        color:#ffcc00;
+        font-size:12px;
+        display:block;
+        margin-top:6px;
+    }
+
+    /* EMPTY */
+
+    .empty{
+        text-align:center;
+        padding:30px;
+        color:#aaa;
+    }
+
+    /* FOOTER */
+
+    .footer{
+        text-align:center;
+        color:#666;
+        margin-top:25px;
+        padding-bottom:15px;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:1200px){
+
+        .cards{
+            grid-template-columns:repeat(3, 1fr);
+        }
+
+    }
+
+    @media(max-width:800px){
+
+        body{
+            padding:12px;
+        }
+
+        .header{
+            flex-direction:column;
+            gap:15px;
+            align-items:flex-start;
+        }
+
+        .title{
+            font-size:24px;
+        }
+
+        .cards{
+            grid-template-columns:repeat(2, 1fr);
+        }
+
+        .search-form{
+            flex-direction:column;
+        }
+
+        .search-btn,
+        .clear-btn{
+            text-align:center;
+            width:100%;
+        }
+
+    }
+
+    @media(max-width:500px){
+
+        .cards{
+            grid-template-columns:1fr 1fr;
+            gap:10px;
+        }
+
+        .card{
+            padding:14px;
+        }
+
+        .card h1{
+            font-size:22px;
+        }
+
+        .card h3{
+            font-size:11px;
+        }
+
+    }
+
+</style>
+
+</head><body><!-- HEADER -->
+
+<div class="header">
+
+    <div class="title">
+        FAYGANTS DASHBOARD
+    </div>
+
+    <a href="/logout" class="logout-btn">
+        Logout
+    </a>
+
+</div>
+
+
+<!-- DASHBOARD CARDS -->
+
+<div class="cards">
+
+    <div class="card">
+
+        <h3>TOTAL ORDERS</h3>
+
+        <h1>
+            {{ total_orders }}
+        </h1>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>PENDING</h3>
+
+        <h1>
+            {{ pending_orders }}
+        </h1>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>PRINTING</h3>
+
+        <h1>
+            {{ printing_orders }}
+        </h1>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>PRINTED</h3>
+
+        <h1>
+            {{ printed_orders }}
+        </h1>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>COLLECTED</h3>
+
+        <h1>
+            {{ collected_orders }}
+        </h1>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>PAID ORDERS</h3>
+
+        <h1>
+            {{ paid_orders }}
+        </h1>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>UNPAID ORDERS</h3>
+
+        <h1>
+            {{ unpaid_orders }}
+        </h1>
+
+    </div>
+
+
+    <div class="card revenue-card">
+
+        <h3>TODAY'S REVENUE</h3>
+
+        <h1>
+            KSh {{ "%.2f"|format(today_revenue|float) }}
+        </h1>
+
+    </div>
+
+
+    <div class="card revenue-card">
+
+        <h3>TOTAL REVENUE</h3>
+
+        <h1>
+            KSh {{ "%.2f"|format(total_revenue|float) }}
+        </h1>
+
+    </div>
+
+</div>
+
+
+<!-- SEARCH -->
+
+<div class="search-box">
+
+    <form
+        action="/admin"
+        method="GET"
+        class="search-form"
+    >
+
+        <input
+            type="text"
+            name="search"
+            class="search-input"
+            placeholder="Search by name, phone or filename..."
+            value="{{ search }}"
+        >
+
+        <button
+            type="submit"
+            class="search-btn"
+        >
+            Search
+        </button>
+
+        <a
+            href="/admin"
+            class="clear-btn"
+        >
+            Clear
+        </a>
+
+    </form>
+
+</div>
+
+
+<!-- ORDERS TABLE -->
+
+<div class="table-container">
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Name</th>
+
+                <th>Phone</th>
+
+                <th>File</th>
+
+                <th>Date &amp; Time</th>
+
+                <th>Pages / Type</th>
+
+                <th>Discount</th>
+
+                <th>Total Cost</th>
+
+                <th>Payment</th>
+
+                <th>Status</th>
+
+                <th>Print</th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+
+            {% for order in orders %}
+
+
+            <tr>
+
+
+                <!-- ID -->
+
+                <td>
+
+                    #{{ order[0] }}
+
+                </td>
+
+
+                <!-- NAME -->
+
+                <td>
+
+                    {{ order[1] }}
+
+                </td>
+
+
+                <!-- PHONE -->
+
+                <td>
+
+                    {{ order[2] }}
+
+                </td>
+
+
+                <!-- FILE -->
+
+                <td class="filename">
+
+                    <div>
+
+                        {{ order[3] }}
+
+                    </div>
+
+
+                    <a
+                        href="/file/{{ order[3] }}"
+                        target="_blank"
+                        class="view-btn"
+                    >
+
+                        View
+
+                    </a>
+
+
+                    <a
+                        href="/download/{{ order[3] }}"
+                        class="download-btn"
+                    >
+
+                        Download
+
+                    </a>
+
+                </td>
+
+
+                <!-- DATE -->
+
+                <td>
+
+                    {{ order[4] }}
+
+                </td>
+
+
+                <!-- PAGES + PRINT TYPE -->
+
+                <td>
+
+                    <form
+                        action="/update_pricing/{{ order[0] }}"
+                        method="POST"
+                        class="pricing-form"
+                    >
+
+
+                        <input
+                            type="number"
+                            name="pages"
+                            class="pages-input"
+                            min="0"
+                            value="{{ order[6] }}"
+                            placeholder="Pages"
+                            required
+                        >
+
+
+                        <select
+                            name="print_type"
+                            class="type-select"
+                        >
+
+                            <option
+                                value="B&W"
+                                {% if order[7] == 'B&W' %}selected{% endif %}
+                            >
+
+                                B&W — KSh 5/page
+
+                            </option>
+
+
+                            <option
+                                value="Color"
+                                {% if order[7] == 'Color' %}selected{% endif %}
+                            >
+
+                                Color — KSh 10/page
+
+                            </option>
+
+                        </select>
+
+
+                        <button
+                            type="submit"
+                            class="save-price-btn"
+                        >
+
+                            Save Price
+
+                        </button>
+
+
+                    </form>
+
+                </td>
+
+
+                <!-- DISCOUNT -->
+
+                <td>
+
+                    <div class="cost-box">
+
+                        {% if order[8]|float > 0 %}
+
+                            <div class="discount">
+
+                                - KSh {{ "%.2f"|format(order[8]|float) }}
+
+                            </div>
+
+                            <small>
+
+                                Color discount
+
+                            </small>
+
+                        {% else %}
+
+                            <span style="color:#666;">
+
+                                No discount
+
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </td>
+
+
+                <!-- TOTAL COST -->
+
+                <td>
+
+                    <div class="cost-box">
+
+                        {% if order[9]|float > 0 %}
+
+                            <div class="cost">
+
+                                KSh {{ "%.2f"|format(order[9]|float) }}
+
+                            </div>
+
+                            <div class="price-info">
+
+                                {{ order[6] }} page(s)
+
+                            </div>
+
+                        {% else %}
+
+                            <span style="color:#ffcc00;">
+
+                                Not priced
+
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </td>
+
+
+                <!-- PAYMENT -->
+
+                <td>
+
+                    <form
+                        action="/update_payment/{{ order[0] }}"
+                        method="POST"
+                        class="payment-form"
+                    >
+
+                        <select
+                            name="payment_status"
+                            class="payment-select"
+                            onchange="this.form.submit()"
+                        >
+
+                            <option
+                                value="Unpaid"
+                                {% if order[10] == 'Unpaid' %}selected{% endif %}
+                            >
+
+                                Unpaid
+
+                            </option>
+
+
+                            <option
+                                value="Paid"
+                                {% if order[10] == 'Paid' %}selected{% endif %}
+                            >
+
+                                Paid
+
+                            </option>
+
+                        </select>
+
+                    </form>
+
+
+                    {% if order[10] == 'Paid' %}
+
+                        <div class="paid">
+
+                            ✓ PAID
+
+                        </div>
+
+                    {% else %}
+
+                        <div class="unpaid">
+
+                            ✕ UNPAID
+
+                        </div>
+
+                    {% endif %}
+
+                </td>
+
+
+                <!-- STATUS -->
+
+                <td>
+
+                    <form
+                        action="/update_status/{{ order[0] }}"
+                        method="POST"
+                        class="status-form"
+                    >
+
+                        <select
+                            name="status"
+                            class="status-select"
+                            onchange="this.form.submit()"
+                        >
+
+
+                            <option
+                                value="Pending"
+                                {% if order[5] == 'Pending' %}selected{% endif %}
+                            >
+
+                                Pending
+
+                            </option>
+
+
+                            <option
+                                value="Printing"
+                                {% if order[5] == 'Printing' %}selected{% endif %}
+                            >
+
+                                Printing
+
+                            </option>
+
+
+                            <option
+                                value="Printed"
+                                {% if order[5] == 'Printed' %}selected{% endif %}
+                            >
+
+                                Printed
+
+                            </option>
+
+
+                            <option
+                                value="Collected"
+                                {% if order[5] == 'Collected' %}selected{% endif %}
+                            >
+
+                                Collected
+
+                            </option>
+
+
+                        </select>
+
+                    </form>
+
+                </td>
+
+
+                <!-- PRINT -->
+
+                <td>
+
+
+                    {% if order[5] == 'Pending' %}
+
+
+                        {% if order[9]|float > 0 and order[10] != 'Paid' %}
+
+                            <span class="printed-label">
+
+                                🔒 Awaiting Payment
+
+                            </span>
+
+                            <span class="payment-warning">
+
+                                Mark Paid to print
+
+                            </span>
+
+
+                        {% else %}
+
+
+                            <form
+                                action="/print/{{ order[0] }}"
+                                method="POST"
+                                class="print-form"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="print-btn"
+                                    onclick="return confirm('Print this assignment on EPSON L3250?');"
+                                >
+
+                                    🖨️ Print
+
+                                </button>
+
+                            </form>
+
+
+                        {% endif %}
+
+
+                    {% elif order[5] == 'Printed' or order[5] == 'Collected' %}
+
+
+                        <span class="printed-label">
+
+                            ✓ Printed
+
+                        </span>
+
+
+                    {% else %}
+
+
+                        <span class="printed-label">
+
+                            Processing
+
+                        </span>
+
+
+                    {% endif %}
+
+
+                </td>
+
+
+            </tr>
+
+
+            {% else %}
+
+
+            <tr>
+
+                <td
+                    colspan="11"
+                    class="empty"
+                >
+
+                    No orders found.
+
+                </td>
+
+            </tr>
+
+
+            {% endfor %}
+
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    FAYGANTS Assignment Printing System
+
+</div>
+
+</body></html>

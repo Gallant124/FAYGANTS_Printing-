@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FAYGANTS Assignment Printing</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#111;
+            color:white;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            min-height:100vh;
+            padding:20px;
+        }
+
+        .container{
+            width:100%;
+            max-width:600px;
+            background:#1c1c1c;
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0 0 20px rgba(255,0,0,0.3);
+        }
+
+        h1{
+            text-align:center;
+            color:#ff3333;
+            margin-bottom:10px;
+        }
+
+        .subtitle{
+            text-align:center;
+            color:#ccc;
+            margin-bottom:25px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:5px;
+            color:white;
+        }
+
+        input,
+        select,
+        textarea{
+            width:100%;
+            padding:12px;
+            margin-bottom:15px;
+            border:none;
+            border-radius:8px;
+        }
+
+        button{
+            width:100%;
+            padding:14px;
+            background:#ff3333;
+            color:white;
+            border:none;
+            border-radius:8px;
+            font-size:16px;
+            font-weight:bold;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#cc0000;
+        }
+
+        .footer{
+            text-align:center;
+            margin-top:20px;
+            color:#aaa;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>FAYGANTS</h1>
+
+        <div class="subtitle">
+            Assignment Printing Portal
+        </div>
+
+        <form action="/submit" method="POST" enctype="multipart/form-data">
+
+            <label>Full Name</label>
+            <input type="text" name="name" required>
+
+            <label>Phone Number</label>
+            <input type="text" name="phone" required>
+
+            <label>Upload Assignment</label>
+            <input type="file" name="assignment" required>
+
+            <button type="submit">
+                Submit Assignment
+            </button>
+
+        </form>
+
+        <div class="footer">
+            Powered by FAYGANTS Cyber
+        </div>
+
+    </div>
+
+</body>
+</html>

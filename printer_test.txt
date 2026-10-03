@@ -1,0 +1,3 @@
+FAYGANTS PRINTING SYSTEM
+Windows printing test
+If you can read this, printing works!
