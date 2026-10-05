@@ -169,6 +169,9 @@ def login():
         admin_username = os.getenv("ADMIN_USERNAME")
         admin_password = os.getenv("ADMIN_PASSWORD")
 
+        print("ADMIN_USERNAME =", admin_username)
+        print("ADMIN_PASSWORD_SET =", bool(admin_password))
+
         if (
             username == admin_username
             and password == admin_password
